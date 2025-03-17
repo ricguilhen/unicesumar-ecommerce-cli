@@ -1,18 +1,12 @@
 package entities;
 
-public class Product {
-    private String name;
-    private String code;
-    private double price;
+public class Product extends Entity {
+    private final String name;
+    private final double price;
 
-    public Product(String code, String name, double price) {
-        this.code = code;
+    public Product(String name, double price) {
         this.name = name;
         this.price = price;
-    }
-
-    public String getCode() {
-        return this.code;
     }
 
     public String getName() {
