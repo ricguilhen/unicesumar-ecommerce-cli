@@ -1,3 +1,5 @@
+package src.main.java.com.unicesumar.paymentMethods;
+
 public class BoletoPayment implements PaymentMethod {
     @Override
     public void pay(double amount) {

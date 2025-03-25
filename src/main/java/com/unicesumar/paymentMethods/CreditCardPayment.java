@@ -1,3 +1,5 @@
+package src.main.java.com.unicesumar.paymentMethods;
+
 public class CreditCardPayment implements PaymentMethod {
     @Override
     public void pay(double amount) {

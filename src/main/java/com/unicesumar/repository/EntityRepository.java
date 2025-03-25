@@ -1,6 +1,4 @@
-package repository;
-
-import entities.Entity;
+package src.main.java.com.unicesumar.repository;
 
 import java.util.List;
 import java.util.Optional;
