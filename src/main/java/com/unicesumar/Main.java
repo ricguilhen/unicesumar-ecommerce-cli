@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // Parâmetros de conexão
-        String url = "jdbc:postgresql://database:5432/unicesumar_store";
+        String url = "jdbc:postgresql://localhost:5432/unicesumar_store";
         String usuario = "postgres";
         String senha = "password";
 
