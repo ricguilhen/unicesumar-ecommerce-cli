@@ -1,4 +1,4 @@
-package src.main.java.com.unicesumar.entities;
+package com.unicesumar.entities;
 
 public class Product extends Entity {
     private final String name;

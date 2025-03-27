@@ -1,4 +1,4 @@
-package src.main.java.com.unicesumar.repository;
+package com.unicesumar.repository;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package src.main.java.com.unicesumar;
+package com.unicesumar;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

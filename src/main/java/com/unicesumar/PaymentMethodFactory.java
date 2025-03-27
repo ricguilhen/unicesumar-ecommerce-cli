@@ -1,9 +1,10 @@
-package src.main.java.com.unicesumar;
-import src.main.java.com.unicesumar.paymentMethods.BoletoPayment;
-import src.main.java.com.unicesumar.paymentMethods.CreditCardPayment;
-import src.main.java.com.unicesumar.paymentMethods.PaymentMethod;
-import src.main.java.com.unicesumar.paymentMethods.PaymentType;
-import src.main.java.com.unicesumar.paymentMethods.PixPayment;
+package com.unicesumar;
+
+import com.unicesumar.paymentMethods.BoletoPayment;
+import com.unicesumar.paymentMethods.CreditCardPayment;
+import com.unicesumar.paymentMethods.PaymentMethod;
+import com.unicesumar.paymentMethods.PaymentType;
+import com.unicesumar.paymentMethods.PixPayment;
 
 public class PaymentMethodFactory {
     public static PaymentMethod create(PaymentType type) {

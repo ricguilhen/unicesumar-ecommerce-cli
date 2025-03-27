@@ -12,11 +12,6 @@
     <description>A basic e-commerce CLI application</description>
     <url>http://www.unicesumar.com</url>
 
-    <properties>
-        <maven.compiler.source>23</maven.compiler.source>
-        <maven.compiler.target>23</maven.compiler.target>
-    </properties>
-
     <dependencies>
         <!-- Add your dependencies here -->
         <dependency>
@@ -33,7 +28,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
                 <configuration>
-                    <mainClass>src.main.java.com.unicesumar.Main</mainClass>
+                    <mainClass>com.unicesumar.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
