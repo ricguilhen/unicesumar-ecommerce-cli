@@ -1,11 +1,11 @@
-package repository;
-
-import entities.Entity;
+package com.unicesumar.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import com.unicesumar.entities.Entity;
 
 public class InMemoryRepository<T extends Entity> implements EntityRepository<T> {
     private ArrayList<T> dataStore = new ArrayList<>();

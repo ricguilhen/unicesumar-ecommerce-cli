@@ -1,4 +1,4 @@
-package entities;
+package com.unicesumar.entities;
 
 import java.util.UUID;
 

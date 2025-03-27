@@ -1,3 +1,6 @@
+package com.unicesumar;
+import com.unicesumar.paymentMethods.PaymentMethod;
+
 public class PaymentManager {
     private PaymentMethod paymentMethod;
 

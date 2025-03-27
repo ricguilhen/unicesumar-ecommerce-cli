@@ -1,18 +1,32 @@
+package com.unicesumar;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
 
-import entities.Product;
-import repository.InMemoryRepository;
-
 public class Main {
-
     public static void main(String[] args) {
+        // Parâmetros de conexão
+        String url = "jdbc:postgresql://localhost:5432/unicesumar_store";
+        String usuario = "postgres";
+        String senha = "password";
+
+        // Tentativa de conexão
+        try (Connection conn = DriverManager.getConnection(url, usuario, senha)) {
+            if (conn != null) {
+                System.out.println("Conectado com sucesso ao PostgreSQL!");
+            } else {
+                System.out.println("Falha na conexão.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao conectar: " + e.getMessage());
+        }
+
         Scanner scanner = new Scanner(System.in);
         int option;
 
         do {
-            System.out.println("\033[H\033[2J");
-            System.out.flush();
-
             System.out.println("\n---MENU---");
             System.out.println("1 - Cadastrar Produto");
             System.out.println("2 - Buscar Produto");
