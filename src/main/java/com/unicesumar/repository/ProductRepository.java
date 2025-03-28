@@ -4,12 +4,11 @@ import com.unicesumar.entities.Product;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
-public class ProductRepository<T extends Product> implements EntityRepository<T> {
+public class ProductRepository implements EntityRepository<Product> {
     private final Connection connection;
 
     public ProductRepository(Connection connection) {
@@ -17,7 +16,7 @@ public class ProductRepository<T extends Product> implements EntityRepository<T>
     }
 
     @Override
-    public void save(T entity) {
+    public void save(Product entity) {
         String query = "INSERT INTO products VALUES (?, ?, ?)";
         try {
             PreparedStatement stmt = this.connection.prepareStatement(query);
@@ -31,17 +30,62 @@ public class ProductRepository<T extends Product> implements EntityRepository<T>
     }
 
     @Override
-    public Optional<T> findById(UUID id) {
+    public Optional<Product> findById(UUID id) {
+        String query = "SELECT * FROM products WHERE uuid = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setString(1, id.toString());
+            ResultSet resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+                Product product = new Product(
+                        UUID.fromString(resultSet.getString("uuid")),
+                        resultSet.getString("name"),
+                        resultSet.getDouble("price")
+                );
+                return Optional.of(product);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         return Optional.empty();
+
     }
 
     @Override
-    public List<T> findAll() {
-        return List.of();
+    public List<Product> findAll() {
+        String query = "SELECT * FROM products";
+        List<Product> products = new LinkedList<>();
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            ResultSet resultSet = stmt.executeQuery();
+
+            while (resultSet.next()) {
+                Product product = new Product(
+                        UUID.fromString(resultSet.getString("uuid")),
+                        resultSet.getString("name"),
+                        resultSet.getDouble("price")
+                );
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return products;
+
     }
 
     @Override
     public void deleteById(UUID id) {
+        String query = "DELETE FROM products WHERE uuid = ?";
+        try {
+            PreparedStatement stmt = this.connection.prepareStatement(query);
+            stmt.setString(1, id.toString());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }
