@@ -26,12 +26,20 @@ import java.sql.SQLException;
 
 public class ConexaoPostgres {
     public static Connection conectar() throws SQLException {
-        String url = "jdbc:postgresql://localhost:5432/seubanco";
-        String usuario = "seuusuario";
-        String senha = "suasenha";
+        // Parâmetros de conexão
+        String url = "jdbc:sqlite:database.sqlite";
 
-        Connection conn = DriverManager.getConnection(url, usuario, senha);
-        System.out.println("Conexão estabelecida com sucesso!");
+        // Tentativa de conexão
+        try (Connection conn = DriverManager.getConnection(url)) {
+            if (conn != null) {
+                System.out.println("Conectado com sucesso ao SQLite!");
+            } else {
+                System.out.println("Falha na conexão.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro ao conectar: " + e.getMessage());
+        }
+        
         return conn;
     }
 }
