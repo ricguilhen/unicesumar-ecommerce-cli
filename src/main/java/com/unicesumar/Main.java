@@ -6,16 +6,14 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         // Parâmetros de conexão
-        String url = "jdbc:postgresql://localhost:5432/unicesumar_store";
-        String usuario = "postgres";
-        String senha = "password";
+        String url = "jdbc:sqlite:database.sqlite";
 
         // Tentativa de conexão
-        try (Connection conn = DriverManager.getConnection(url, usuario, senha)) {
+        try (Connection conn = DriverManager.getConnection(url)) {
             if (conn != null) {
-                System.out.println("Conectado com sucesso ao PostgreSQL!");
+                System.out.println("Conectado com sucesso ao SQLite!");
             } else {
                 System.out.println("Falha na conexão.");
             }
