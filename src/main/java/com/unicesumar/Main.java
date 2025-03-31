@@ -1,24 +1,35 @@
 package com.unicesumar;
 
+import com.unicesumar.entities.Product;
+import com.unicesumar.repository.ProductRepository;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.Scanner;
+import java.util.UUID;
 
 public class Main {
-        public static void main(String[] args) {
+    public static void main(String[] args) {
+        ProductRepository listaDeProdutos = null;
+        Connection conn = null;
+        
         // Parâmetros de conexão
         String url = "jdbc:sqlite:database.sqlite";
 
         // Tentativa de conexão
-        try (Connection conn = DriverManager.getConnection(url)) {
+        try {
+            conn = DriverManager.getConnection(url);
             if (conn != null) {
-                System.out.println("Conectado com sucesso ao SQLite!");
+                listaDeProdutos = new ProductRepository(conn);
             } else {
                 System.out.println("Falha na conexão.");
+                System.exit(1);
             }
         } catch (SQLException e) {
             System.out.println("Erro ao conectar: " + e.getMessage());
+            System.exit(1);
         }
 
         Scanner scanner = new Scanner(System.in);
@@ -35,19 +46,29 @@ public class Main {
             switch (option) {
                 case 1:
                     System.out.println("Cadastrar Produto");
+                    listaDeProdutos.save(new Product("Teste", 10));
+                    listaDeProdutos.save(new Product("Computador", 3000));
                     break;
                 case 2:
                     System.out.println("Buscar Produto");
+                    Optional<Product> p = listaDeProdutos.findById(UUID.fromString("a3bb6c7a-65f0-4fc6-8bd3-7f9be5d3ab55"));
+                    p.ifPresent(System.out::println);
                     break;
                 case 3:
                     System.out.println("Saindo...");
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente");;
+                    System.out.println("Opção inválida. Tente novamente");
+                    ;
             }
 
         } while (option != 3);
 
         scanner.close();
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

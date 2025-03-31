@@ -9,6 +9,10 @@ public abstract class Entity {
         this.uuid = UUID.randomUUID();
     }
 
+    public Entity(UUID uuid) {
+        this.uuid = uuid;
+    }
+
     public UUID getUuid() {
         return uuid;
     }
