@@ -6,6 +6,7 @@ import com.unicesumar.repository.ProductRepository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.UUID;
@@ -51,8 +52,8 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Buscar Produto");
-                    Optional<Product> p = listaDeProdutos.findById(UUID.fromString("a3bb6c7a-65f0-4fc6-8bd3-7f9be5d3ab55"));
-                    p.ifPresent(System.out::println);
+                    List<Product> products = listaDeProdutos.findAll();
+                    products.forEach(System.out::println);
                     break;
                 case 3:
                     System.out.println("Saindo...");
