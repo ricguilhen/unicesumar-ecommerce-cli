@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public interface EntityRepository<T> {
     void save(T entity);
-    Optional<T> findById(UUID id);
+    Optional<T> findById(UUID uuid);
     List<T> findAll();
-    void deleteById(UUID id);
+    void deleteById(UUID uuid);
 }
